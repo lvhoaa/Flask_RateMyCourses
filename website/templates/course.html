@@ -1,0 +1,78 @@
+
+{% extends 'base.html' %}
+
+{% block title %} {{ course.code }} - RATINGS {% endblock %}
+
+{% block content %}
+  <div style="text-align: center;">
+    <p style="font-weight: bold; font-size: 36px; margin-bottom: -18px;">{{ course.code }}</p>
+    <p style="color: #999; font-size: 24px;">{{ course.name }}</p>
+  </div>
+
+  <div style="display: flex; justify-content: center; margin-left: 150px; margin-right: 150px; margin-top: 20px; font-size: 18px;">
+    <div style="width: 45%; margin-right: 9%;">
+      <h2>Course Details</h2>
+      <p><strong>Description:</strong> {{ course.description }}</p>
+      <p><strong>Credit:</strong> {{ course.credit }}</p>
+    </div>
+
+    <div style="width: 45%;">
+      <h2>Rating Stats</h2>
+      <p><strong>Quality:</strong> {{avg_stars}} ★ </p>
+   
+      <p><strong>Grade:</strong> {{avg_grade}} 📝 </p>
+      <p><strong>Difficulty:</strong> {{avg_difficulty}} ☹</p>
+    </div>
+  </div>
+
+  {{ratings.stars}}
+  <h2 style="font-size: 36px; font-weight: lighter; text-align: center; margin-top: 80px; margin-bottom: 50px"> Past Students' Reviews </h2>
+  
+  <div style="height: 400px; width: 60%; overflow-y: scroll; max-height: 400px; margin: 0 auto; display: flex; justify-content: center; flex-wrap: wrap; border-radius: 10px; border: 1px solid #ddd; padding: 10px; align-items: center;">
+    {% for rating in ratings %}
+      <div style="width: 100%; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin: 10px;">
+        <p style="margin-bottom: 40px; display: flex; justify-content: space-between;">
+          <span>
+            {% if rating.anonymous %}
+            <span style="color: purple">  <strong> Anonymous  </strong> </span> &nbsp;&nbsp;&nbsp;&nbsp;
+            {% else %}
+            <span style="color: purple">  <strong> {{rating.author}} </strong> </span> &nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif%}
+
+            <strong>Quality: </strong>  {{rating.stars}} ★ &nbsp;&nbsp;&nbsp;&nbsp;
+            <strong>Grade:</strong> {{ rating.grade }} &nbsp;&nbsp;&nbsp;&nbsp; 
+            <strong>Difficulty:</strong> {{ rating.difficulty }} ☹
+          </span>
+          <span style="text-align: right;">
+            {{ rating.date }}
+          </span>
+        </p>
+  
+        <p> {{ rating.comment }} </p>
+
+        <div>
+          <span style="background-color: #f2f2f2; padding: 7px; border-radius: 20px; display: inline-block;  margin-right:15px;">{{rating.summary_word1}}</span>
+          <span style="background-color: #f2f2f2; padding: 7px; border-radius: 20px; display: inline-block;  margin-right:15px;">{{rating.summary_word2}}</span>
+          <span style="background-color: #f2f2f2; padding: 7px; border-radius: 20px; display: inline-block; margin-right:15px;">{{rating.summary_word3}}</span>
+        </div>
+        
+      </div>
+    {% endfor %}
+  </div>
+
+  <h2 style="font-size: 36px; font-weight: lighter; text-align: center; margin-top: 80px; margin-bottom: 50px;">Leave a Review</h2>
+
+
+    <div style="display: flex; justify-content: center; margin-left: 150px; margin-right: 150px; margin-top: 20px; font-size: 18px; border-radius: 10px; border: 1px solid #ddd; padding: 10px; margin-bottom: 100px;">
+        <form method="post">
+            {{ form.csrf_token }}
+            <label>Stars: {{ form.stars }}</label><br>
+            <label>Grade: {{ form.grade }}</label><br>
+            <label>Difficulty: {{ form.difficulty }}</label><br>
+            <label>Comment: {{ form.comment }}</label><br>
+            <label>Anonymous: {{ form.anonymous }}</label><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    
+{% endblock %}
