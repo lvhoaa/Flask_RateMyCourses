@@ -20,12 +20,11 @@ Knowing choosing the right course in college is difficult, RateMyCourses aims to
 
 Key features of RateMyCourses project includes: 
 - Flask-based web application for reading and making reviews
-- Designed database with one-to-many relationships using ORMs and PostgreSQL. 
+- Designed database with one-to-many relationships using ORMs
 - Integration with OpenAI API for crafting high-quality summary from course reviews.
 - Develop star-rating system on multiple aspects of a course: quality, grading, and difficulty.
 - Support profanity detection to obtain comments of highest quality
 - Support login/logout/registration system to validate users
-- Deployed with Docker: [Full version](https://github.com/lvhoaa/deploy-ratemycourses). 
 
 ## Illustrations
 
