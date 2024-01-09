@@ -1,6 +1,7 @@
 # RATE MY COURSES -- See reviews, get advice, and rate your college courses 
 
-RateMyCourses is a web application built with Flask to serve as a platform for students to see and create reviews about university courses. I built this project originally in Django, and this is its Flask version.
+RateMyCourses is a web application built with Flask to serve as a platform for students to see and create reviews about university courses.
+
 [Django version] (https://github.com/lvhoaa/RateMyCourses)
 
 ## Table of Contents
